@@ -9,7 +9,7 @@ on:
         description: "Repository URL"
         type: choice
         # Default value if no value is explicitly provided
-        default: "git@github.com:adamteller/samples.git"
+        default: "adamteller/samples.git"
         options: ["git@github.com:adamteller/samples.git", "git@github.com:adamteller/BDD.git"]
         required: true
       source_branch:
