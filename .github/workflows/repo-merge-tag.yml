@@ -37,3 +37,9 @@ jobs:
       run: | 
         echo "Merge ${{ inputs.source_branch }} into ${{ inputs.dest_branch }} in repo: ${{ inputs.repo_url }}"
 
+    - name: Check out my other repo
+      uses: actions/checkout@master
+      with:
+        repository: ${{inputs.repo_url}}
+
+
