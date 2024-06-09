@@ -40,6 +40,6 @@ jobs:
     - name: Check out my other repo
       uses: actions/checkout@master
       with:
-        repository: ${{inputs.repo_url}}
+        repository: adamteller/samples.git
 
 
