@@ -32,18 +32,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: State Intent
-      run: | 
-        echo "Merge ${{ inputs.source_branch }} into ${{ inputs.dest_branch }} in repo: ${{ inputs.repo_url }}"
-
-    # Current repo
-    - name: Checkout
-      uses: actions/checkout@v3
+      - uses: actions/checkout@master
       
-    - name: Check out my other repo
-      uses: actions/checkout@v3
-      with:
-        repository: ${{ inputs.repo_url }}
+      - name: Merge ${{ inputs.source_branch }} -> ${{ inputs.dest_branch }}
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: ${{ inputs.source_branch }}
+          target_branch: ${{ inputs.dest_branch }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ inputs.repo_url }}
 
 
