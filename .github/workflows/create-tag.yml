@@ -21,18 +21,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Create Tag
-        uses: negz/create-tag@v1
+        uses: rickstaa/action-create-tag@v1
+        id: "tag_create"
         with:
-          version: ${{ inputs.tag_name }}
+          tag: ${{ inputs.tag_name }}
+          tag_exists_error: false
           message: "Merging x into y for ${{ inputs.tag_name }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Tag named release
-        uses: negz/create-tag@v1
+        uses: rickstaa/action-create-tag@v1
         with:
-          version: "release"
+          tag: "release"
+          tag_exists_error: false
           message: "Merging x into y for a tag named release"
-          token: ${{ secrets.GITHUB_TOKEN }}    
+           
