@@ -4,7 +4,7 @@ on:
     # Inputs the workflow accepts.
     inputs:
       tag_name:
-        # Friendly description to be shown in the UI instead of 'name'
+        # Friendly description to be shown in the UI
         description: 'Tag release value'
         # Input has to be provided for the workflow to run
         required: true
@@ -40,9 +40,3 @@ jobs:
           tag: "release"
           force_push_tag: true
           message: "Merging for a tag named release"
-      
-      - name: Tag published version
-        run: |
-          git tag -a -f v${{ inputs.tag_name }} -m "Published version ${{ inputs.tag_name }}" ${GITHUB_SHA}
-          git tag -a -f release -m "Release tag version" ${GITHUB_SHA}
-          git push origin --tags
