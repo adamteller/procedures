@@ -6,12 +6,13 @@ on:
       tag_name:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Tag release value'
-        # Default value if no value is explicitly provided
-        default: 'World'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
         type: string
+permissions:
+  actions: write
+  contents: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel 
 jobs:
