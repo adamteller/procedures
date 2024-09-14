@@ -17,7 +17,7 @@ permissions:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel 
 jobs:
   build:
-    name: Create Release
+    name: Create Tags Job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,3 +29,10 @@ jobs:
           version: ${{ inputs.tag_name }}
           message: "Merging x into y for ${{ inputs.tag_name }}"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Tag named release
+        uses: negz/create-tag@v1
+        with:
+          version: "release"
+          message: "Merging x into y for a tag named release"
+          token: ${{ secrets.GITHUB_TOKEN }}    
