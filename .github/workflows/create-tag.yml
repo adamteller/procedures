@@ -1,4 +1,4 @@
-name: Tag the repo
+name: Create tags from ${GITHUB_REF##*/} 
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
@@ -10,6 +10,7 @@ on:
         required: true
         # The data type of the input
         type: string
+
 permissions:
   actions: write
   contents: write
@@ -30,7 +31,7 @@ jobs:
         id: "tag_create"
         with:
           tag: ${{ inputs.tag_name }}
-          tag_exists_error: false
+          force_push_tag: true
           message: "Merging x into y for ${{ inputs.tag_name }}"
 
       - name: Create Tag named release
@@ -39,5 +40,4 @@ jobs:
           tag: "release"
           force_push_tag: true
           message: "Merging for a tag named release"
-          run: echo running on branch ${GITHUB_REF##*/}  
            
